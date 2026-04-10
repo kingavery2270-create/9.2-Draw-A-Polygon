@@ -22,8 +22,20 @@ def trapezoid(turtle,sides):
     turtle.forward(20)
     turtle.setheading(180)
     turtle.forward(50)
+    turtle.right(113)
+    turtle.forward(20)
+    turtle.end_fill()
+
+def rectangle(turtle,sides):
+    turtle.begin_fill()
+    turtle.forward(50)
+    turtle.right(90)
+    turtle.fd(25)
+    turtle.right(90)
+    turtle.fd(50)
     turtle.home()
     turtle.end_fill()
+
 def square(turtle,sides):
     turtle.begin_fill()
     for i in range(4):
@@ -49,11 +61,14 @@ while True:
     pen.clear()
     if sides == 4:
         parallelsides = int(input("How many parallel sides do you want?  "))
+        equalsides = int(input('Are all sidelengths equal to each other?  '))
         if parallelsides == 0:
             unknown_quad(pen,4)
         elif parallelsides == 2:
             trapezoid(pen,4)
-        elif parallelsides == 4:
+        elif parallelsides == 4 and equalsides == 2:
+             rectangle(pen,4)
+        elif parallelsides == 4 and equalsides == 4: 
             square(pen,4)
     else:
         equal_polygon(pen,sides)
