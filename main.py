@@ -42,6 +42,17 @@ def square(turtle,sides):
         turtle.forward(25)
         turtle.right(90)
     turtle.end_fill()
+
+def parallelogram(turtle,sides):
+    turtle.begin_fill()
+    turtle.fd(25)
+    turtle.right(70)
+    turtle.fd(15)
+    turtle.seth(180)
+    turtle.fd(25)
+    turtle.right(70)
+    turtle.fd(15)
+    turtle.end_fill()
 screen = Screen()
 screen.bgcolor("teal")
 screen.setup(400,400)
@@ -60,16 +71,19 @@ while True:
     sides = int(input("How many sides do you want?  "))
     pen.clear()
     if sides == 4:
-        parallelsides = int(input("How many parallel sides do you want?  "))
-        equalsides = int(input('Are all sidelengths equal to each other?  '))
+        parallelsides = int(input("How many pairs of parallel sides do you want?  "))
+        equalangles = (input('Are all internal angles equal to each other?  '))
+        equalsides = (input("Are all sides equal lengths?  "))
         if parallelsides == 0:
             unknown_quad(pen,4)
-        elif parallelsides == 2:
+        elif parallelsides == 2 and equalangles == 'no' and equalsides == 'no':
             trapezoid(pen,4)
-        elif parallelsides == 4 and equalsides == 2:
-             rectangle(pen,4)
-        elif parallelsides == 4 and equalsides == 4: 
+        elif parallelsides == 4 and equalangles == "yes" and equalsides == "no":
+            rectangle(pen,4)
+        elif parallelsides == 4 and equalangles == 'yes' and equalsides == "yes": 
             square(pen,4)
+        elif parallelsides == 4 and equalangles == 'no' and equalsides == 'no':
+            parallelogram(pen,4)
     else:
         equal_polygon(pen,sides)
 

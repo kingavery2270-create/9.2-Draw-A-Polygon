@@ -26,10 +26,15 @@ def move_forward(turtle):
         turtle.setheading(180 - turtle.heading())
         turtle.fd(10)
         turtle.speed(1)
+        turtles.append(create_turtle())
+
     if turtle.ycor() > 235 or turtle.ycor() < -235:
         turtle.speed(0)
         turtle.setheading(-turtle.heading())
         turtle.speed(1)
+        turtles.append(create_turtle())
+
+    return turtles
         
 def move_xy(turtle,deltax,deltay):
     newX = turtle.xcor() + deltax
@@ -46,12 +51,16 @@ def move_xy(turtle,deltax,deltay):
     turtle.goto(newX,newY)
     return deltax, deltay
 
-
+def create_turtle():
+    yertle = Turtle()
+    yertle.color(generate_random_hex_color())   
+    yertle.shape('circle')
+    yertle.seth(random.randint(0,360))
+    return yertle  
 
 screen = Screen()
 screen.bgcolor("Black")
 screen.setup(500,500)
-
 
 
 
@@ -64,8 +73,11 @@ yertle.seth(random.randint(0,360))
 deltax = random.randint(-5,5)
 deltay = random.randint(-5,5)
 
+turtles = [yertle]
+
 while True:
-    deltax, deltay = move_xy(yertle,deltax,deltay)
+    for turtle in turtles:
+        turtles = move_forward(turtle)
 
 
 
