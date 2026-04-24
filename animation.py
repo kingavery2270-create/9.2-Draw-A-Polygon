@@ -58,13 +58,48 @@ def create_turtle():
     yertle.seth(random.randint(0,360))
     return yertle  
 
+def create_player():
+    global player
+    player = Turtle()
+    player.color(generate_random_hex_color())   
+    player.shape('turtle')
+    player.seth(random.randint(0,360))
+
+def up():   
+    global player
+    player.seth(90)
+    player.fd(10)     
+
+def left():
+    global player
+    player.seth(180)
+    player.fd(10)
+
+def right():
+    global player
+    player.seth(0)
+    player.fd(10)
+
+def down():
+    global player
+    player.seth(-90)
+    player.fd(10)
+
+
 screen = Screen()
 screen.bgcolor("Black")
 screen.setup(500,500)
-
+screen.listen()
+screen.onkey(create_player,'space')
+screen.onkey(up,'w')
+screen.onkey(right,'d')
+screen.onkey(down,'s')
+screen.onkey(left,'a')
 
 
 playing_area()
+
+player = None
 
 yertle = Turtle()
 yertle.color(generate_random_hex_color())   
@@ -78,7 +113,9 @@ turtles = [yertle]
 while True:
     for turtle in turtles:
         turtles = move_forward(turtle)
-
+    player.distance(turtle)
+    if player.distance(turtle) <= 20:
+        turtle.ht()
 
 
 
