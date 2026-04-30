@@ -65,25 +65,25 @@ def create_player():
     player.shape('turtle')
     player.seth(random.randint(0,360))
 
-def up():   
-    global player
-    player.seth(90)
-    player.fd(10)     
+# def up():   
+#     global player
+#     player.seth(90)
+#     player.fd(10)     
 
 def left():
     global player
-    player.seth(180)
-    player.fd(10)
+    player.lt(10)
+    
 
 def right():
     global player
-    player.seth(0)
-    player.fd(10)
+    player.rt(10)
+    
 
-def down():
-    global player
-    player.seth(-90)
-    player.fd(10)
+# def down():
+#     global player
+#     player.seth(-90)
+#     player.fd(10)
 
 
 screen = Screen()
@@ -95,8 +95,6 @@ screen.onkey(up,'w')
 screen.onkey(right,'d')
 screen.onkey(down,'s')
 screen.onkey(left,'a')
-
-
 playing_area()
 
 player = None
@@ -111,11 +109,16 @@ deltay = random.randint(-5,5)
 turtles = [yertle]
 
 while True:
+    if player != None:
+        move_forward(player)
     for turtle in turtles:
         turtles = move_forward(turtle)
-    player.distance(turtle)
-    if player.distance(turtle) <= 20:
-        turtle.ht()
+        if player != None:
+            if player.distance(turtle) <= 20:
+                turtle.ht()
+                turtles.remove(turtle) 
+
+
 
 
 
